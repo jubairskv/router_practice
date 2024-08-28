@@ -1,23 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+//import logo from './logo.svg';
+import "./App.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Dashborad from "./components/Dashborad";
+import Profile from "./components/Profile";
+import User from "./components/User";
+import SideBar from "./components/SideBar";
+import Header from "./components/Header";
+import Body from "./components/Body";
 
 function App() {
+  const appRouter = createBrowserRouter([
+    {
+      path: "/",
+      element: <Dashborad />,
+      children: [
+        {
+          path: "/", //if u passig dynamic path u need pass like without / - "profile"
+          element: <Body />,
+        },
+        {
+          path: "/profile",
+          element: <Profile />,
+        },
+        {
+          path: "/user",
+          element: <User />,
+        },
+        {
+          path: "/header",
+          element: <Header />,
+        },
+        {
+          path: "/sidebar",
+          element: <SideBar />,
+        },
+      ],
+    },
+  ]);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <RouterProvider router={appRouter} />
     </div>
   );
 }
