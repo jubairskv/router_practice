@@ -7,12 +7,14 @@ import User from "./components/User";
 import SideBar from "./components/SideBar";
 import Header from "./components/Header";
 import Body from "./components/Body";
+import Error from "./components/Error";
 
 function App() {
   const appRouter = createBrowserRouter([
     {
       path: "/",
       element: <Dashborad />,
+      errorElement:<Error/>,
       children: [
         {
           path: "/", //if u passig dynamic path u need pass like without / - "profile"
